@@ -87,6 +87,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClearRankingCommand.cs" />
     <Compile Include="ColumnHintViewModel.cs" />
     <Compile Include="PlayboardViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />

@@ -1,7 +1,6 @@
 ﻿<Page
     x:Name="pageRoot"
     x:Class="Griddlers.RankingPage"
-    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Griddlers"
@@ -46,5 +45,15 @@
             <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-    </Grid>
+		<Button
+			Content="Skasuj ranking"
+			HorizontalAlignment="Left"
+			Margin="579,161,0,0"
+			Grid.Row="1"
+			VerticalAlignment="Top"
+			Height="39"
+			Width="205"
+			Command="{Binding ClearRankingCommand, Mode=TwoWay}"	
+			/>
+	</Grid>
 </Page>

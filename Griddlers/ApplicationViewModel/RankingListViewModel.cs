@@ -12,11 +12,12 @@ using ApplicationViewModel.Annotations;
 
 namespace ApplicationViewModel
 {
-	class RankingListViewModel : INotifyPropertyChanged
+	public class RankingListViewModel : INotifyPropertyChanged
 	{
 		private ICommand _clearRankingCommand;
+		private ICommand _showElementByPlayerIdCommand;
 
-	
+
 		public ObservableCollection<ResultViewModel> Results { get; set; }
 
 		public ICommand ClearRankingCommand
@@ -30,7 +31,20 @@ namespace ApplicationViewModel
 				} }
 		}
 
-		public void RankMyResults()
+		public ICommand ShowElementByPlayerIdCommand
+		{
+			get { return _showElementByPlayerIdCommand; }
+			set
+			{
+				if (_showElementByPlayerIdCommand != value)
+				{
+					_showElementByPlayerIdCommand = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public RankingListViewModel()
 		{
 			List<ResultViewModel> myResultList = new List<ResultViewModel>();
 
@@ -38,6 +52,10 @@ namespace ApplicationViewModel
 			myResultList.Add(new ResultViewModel() { CollectionOrderValue = 1, MapNumber = 1, PlayerId = 2, Score = 130 });
 
 			Results = new ObservableCollection<ResultViewModel>(myResultList);
+
+			var clearRankingViewModel = new ClearRankingCommand(this);
+			this.ClearRankingCommand = clearRankingViewModel;
+
 			//myResultList.Add(new Result(1, 232, 1));
 			//myResultList.Add(new Result(2, 213, 1));
 			// Add a lot of more results
@@ -78,6 +96,11 @@ namespace ApplicationViewModel
 		{
 			var handler = PropertyChanged;
 			if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+		}
+
+		public void RankingClear()
+		{
+			Results.Clear();
 		}
 	}
 }
