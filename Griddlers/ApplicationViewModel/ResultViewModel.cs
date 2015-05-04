@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using ApplicationViewModel.Annotations;
 
 namespace ApplicationViewModel
@@ -66,8 +67,22 @@ namespace ApplicationViewModel
 		private int _score;
 		private int _mapNumber;
 		private int _collectionOrderValue;
+		private ICommand _showElementByPlayerIdCommand;
 
 		public event PropertyChangedEventHandler PropertyChanged;
+
+		public ICommand ShowElementByPlayerIdCommand
+		{
+			get { return _showElementByPlayerIdCommand; }
+			set
+			{
+				if (_showElementByPlayerIdCommand != value)
+				{
+					_showElementByPlayerIdCommand = value;
+					OnPropertyChanged();
+				}
+			}
+		}
 
 		[NotifyPropertyChangedInvocator]
 		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
