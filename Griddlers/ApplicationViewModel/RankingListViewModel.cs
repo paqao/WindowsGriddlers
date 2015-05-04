@@ -4,17 +4,31 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using ApplicationViewModel.Annotations;
 
 namespace ApplicationViewModel
 {
 	class RankingListViewModel : INotifyPropertyChanged
 	{
+		private ICommand _clearRankingCommand;
 
-		public event PropertyChangedEventHandler PropertyChanged;
+	
+		public ObservableCollection<ResultViewModel> Results { get; set; }
 
-		public ObservableCollection<ResultViewModel> Results { get; set; } 
+		public ICommand ClearRankingCommand
+		{
+			get { return _clearRankingCommand; }
+			set {
+				if (_clearRankingCommand != value)
+				{
+					_clearRankingCommand = value;
+					OnPropertyChanged();
+				} }
+		}
 
 		public void RankMyResults()
 		{
@@ -55,6 +69,15 @@ namespace ApplicationViewModel
 
 
 			//}
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		[NotifyPropertyChangedInvocator]
+		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			var handler = PropertyChanged;
+			if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
