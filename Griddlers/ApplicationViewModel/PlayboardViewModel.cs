@@ -33,6 +33,7 @@ namespace ApplicationViewModel
 
 	    private void GenerateRowsViewModel()
 		{
+			
 			Rows = new RowHintViewModel[Board.Height];
 
 			for (int j = 0; j < Board.Height; j++)
