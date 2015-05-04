@@ -12,7 +12,7 @@ namespace GameLogic
 	    {
 		    Platform = platformName;
 	    }
-
+		
 		public string Platform { get; set; }
 
 		public uint Width { get; set; }
