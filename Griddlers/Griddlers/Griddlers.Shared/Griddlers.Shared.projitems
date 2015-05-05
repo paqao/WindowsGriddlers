@@ -17,4 +17,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)GameManager.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)AssetaShared\MAP-PACKAGES.json" />
+  </ItemGroup>
 </Project>

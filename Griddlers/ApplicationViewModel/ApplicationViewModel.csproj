@@ -88,9 +88,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColumnHintViewModel.cs" />
+    <Compile Include="PacksAndMapListViewModel.cs" />
     <Compile Include="PlayboardViewModel.cs" />
+    <Compile Include="PlayerScoreViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RankingListViewModel.cs" />
     <Compile Include="RowHintViewModel.cs" />
     <Compile Include="TileHintViewModel.cs" />
   </ItemGroup>
