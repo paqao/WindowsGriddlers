@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using ApplicationViewModel;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -51,6 +52,9 @@ namespace Griddlers
 			this.navigationHelper = new NavigationHelper(this);
 			this.navigationHelper.LoadState += navigationHelper_LoadState;
 			this.navigationHelper.SaveState += navigationHelper_SaveState;
+
+			var RankingListVm = new RankingListViewModel();
+			this.DataContext = RankingListVm;
 		}
 
 		/// <summary>
