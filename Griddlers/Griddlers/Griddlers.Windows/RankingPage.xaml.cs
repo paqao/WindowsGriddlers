@@ -70,6 +70,10 @@ namespace Griddlers
 		/// session. The state will be null the first time a page is visited.</param>
 		private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
 		{
+			if (e?.PageState == null)
+				return;
+
+			var value = e.PageState["raz"];
 		}
 
 		/// <summary>
@@ -82,6 +86,7 @@ namespace Griddlers
 		/// serializable state.</param>
 		private void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
 		{
+			e.PageState["raz"] = 5;
 		}
 
 		#region NavigationHelper registration

@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using Griddlers.Common;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -25,9 +26,7 @@ namespace Griddlers
     /// </summary>
     public sealed partial class App : Application
     {
-#if WINDOWS_PHONE_APP
         private TransitionCollection transitions;
-#endif
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -38,14 +37,15 @@ namespace Griddlers
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
         }
+		
 
-        /// <summary>
+	    /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used when the application is launched to open a specific file, to display
         /// search results, and so forth.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -64,12 +64,13 @@ namespace Griddlers
                 rootFrame = new Frame();
 
                 // TODO: change this value to a cache size that is appropriate for your application
-                rootFrame.CacheSize = 1;
+                rootFrame.CacheSize = 2;
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    // TODO: Load state from previously suspended application
-                }
+					// TODO: Load state from previously suspended application
+					await SuspensionManager.RestoreAsync();
+				}
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
@@ -77,7 +78,6 @@ namespace Griddlers
 
             if (rootFrame.Content == null)
             {
-#if WINDOWS_PHONE_APP
                 // Removes the turnstile navigation for startup.
                 if (rootFrame.ContentTransitions != null)
                 {
@@ -90,7 +90,6 @@ namespace Griddlers
 
                 rootFrame.ContentTransitions = null;
                 rootFrame.Navigated += this.RootFrame_FirstNavigated;
-#endif
 
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
@@ -104,8 +103,7 @@ namespace Griddlers
             // Ensure the current window is active
             Window.Current.Activate();
         }
-
-#if WINDOWS_PHONE_APP
+		
         /// <summary>
         /// Restores the content transitions after the app has launched.
         /// </summary>
@@ -114,10 +112,9 @@ namespace Griddlers
         private void RootFrame_FirstNavigated(object sender, NavigationEventArgs e)
         {
             var rootFrame = sender as Frame;
-            rootFrame.ContentTransitions = this.transitions ?? new TransitionCollection() { new NavigationThemeTransition() };
+            rootFrame.ContentTransitions = this.transitions ?? new TransitionCollection() { };
             rootFrame.Navigated -= this.RootFrame_FirstNavigated;
         }
-#endif
 
         /// <summary>
         /// Invoked when application execution is being suspended.  Application state is saved
@@ -126,12 +123,13 @@ namespace Griddlers
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-
-            // TODO: Save application state and stop any background activity
-            deferral.Complete();
+			await SuspensionManager.SaveAsync();
+			// TODO: Save application state and stop any background activity
+			deferral.Complete();
         }
-    }
+	
+	}
 }

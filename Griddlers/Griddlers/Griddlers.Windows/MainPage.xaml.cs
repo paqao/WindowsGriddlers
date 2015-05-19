@@ -25,11 +25,45 @@ namespace Griddlers
     /// </summary>
     public sealed partial class MainPage : Page
     {
+	    private NavigationHelper _helper;
+
         public MainPage()
         {
             this.InitializeComponent();
 			GameManager manager = new GameManager();
+	        _helper = new NavigationHelper(this);
+			_helper.SaveState += _helper_SaveState;
+			_helper.LoadState += _helper_LoadState;
+
+			Loaded += MainPage_Loaded;
+			
+			NavigationCacheMode = NavigationCacheMode.Enabled;
         }
+
+	    protected override void OnNavigatedTo(NavigationEventArgs e)
+	    {
+			_helper.OnNavigatedTo(e);
+	    }
+
+	    protected override void OnNavigatedFrom(NavigationEventArgs e)
+	    {
+		    _helper.OnNavigatedFrom(e);
+	    }
+
+	    private void MainPage_Loaded(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void _helper_LoadState(object sender, LoadStateEventArgs e)
+		{
+
+		}
+
+		private void _helper_SaveState(object sender, SaveStateEventArgs e)
+		{
+			e.PageState["klucz"] = "key";
+		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{

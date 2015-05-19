@@ -49,8 +49,8 @@ namespace ApplicationViewModel
 		{
 			List<ResultViewModel> myResultList = new List<ResultViewModel>();
 
-			myResultList.Add(new ResultViewModel(){CollectionOrderValue = 1, MapNumber = 1, PlayerId = 1, Score = 100});
-			myResultList.Add(new ResultViewModel() { CollectionOrderValue = 1, MapNumber = 1, PlayerId = 2, Score = 130 });
+			myResultList.Add(new ResultViewModel(){CollectionOrderValue = 1, MapNumber = 1, PlayerName = "Fred", Score = 100});
+			myResultList.Add(new ResultViewModel() { CollectionOrderValue = 1, MapNumber = 1, PlayerName = "George", Score = 130 });
 
 			ShowElementByPlayerIdCommand = new ShowElementCommand(this);
 			foreach (var resultViewModel in myResultList)
@@ -78,7 +78,7 @@ namespace ApplicationViewModel
 							.Select((grp, i, nr) => new
 							{
 								Rank = i,
-								Players = grp.OrderByDescending(g => g.PlayerId),
+								Players = grp.OrderByDescending(g => g.PlayerName),
 								Map = n.OrderByDescending(n=>n.MapNumber)
 							})
 							.Dump();*/
@@ -129,17 +129,17 @@ namespace ApplicationViewModel
 		public void Execute(object parameter)
 		{
 
-			int playerId = (int)parameter;
+			//int playerId = (int)parameter;
 
-			var player = _rankingVM.Results.FirstOrDefault(x => x.PlayerId == playerId);
+			//var player = _rankingVM.Results.FirstOrDefault(x => x.PlayerName == playerId);
 
-			if (player == null)
-				return;
+			//if (player == null)
+			//	return;
 
-			String format = String.Format("Imie: {0} Wynik: {1}", player.PlayerId, player.Score);
+			//String format = String.Format("Imie: {0} Wynik: {1}", player.PlayerName, player.Score);
 
-			MessageDialog dialog = new MessageDialog(format);
-			dialog.ShowAsync();
+			//MessageDialog dialog = new MessageDialog(format);
+			//dialog.ShowAsync();
 		}
 
 		public event EventHandler CanExecuteChanged;

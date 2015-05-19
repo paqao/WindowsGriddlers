@@ -25,13 +25,13 @@ namespace ApplicationViewModel
 			}
 		}
 
-		public int PlayerId
+		public string PlayerName
 		{
-			get { return _playerId; }
+			get { return _playerName; }
 			set {
-				if (_playerId != value)
+				if (_playerName != value)
 				{
-					_playerId = value;
+					_playerName = value;
 					OnPropertyChanged();
 				} 
 			}
@@ -63,7 +63,7 @@ namespace ApplicationViewModel
 			}
 		}
 
-		private int _playerId;
+		private string _playerName;
 		private int _score;
 		private int _mapNumber;
 		private int _collectionOrderValue;

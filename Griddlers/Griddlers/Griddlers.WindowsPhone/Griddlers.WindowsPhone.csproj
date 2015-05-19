@@ -81,12 +81,28 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <ProjectReference Include="..\..\ApplicationViewModel\ApplicationViewModel.csproj">
+      <Project>{2C7AEDE9-17F6-467B-99E6-4D01B6FC76E7}</Project>
+      <Name>ApplicationViewModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\GameLogic\GameLogic.csproj">
       <Project>{9525c05e-3846-4bf7-8e91-f23c105d64a5}</Project>
       <Name>GameLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Griddlers.Windows\Common\NavigationHelper.cs">
+      <Link>Common\NavigationHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Griddlers.Windows\Common\ObservableDictionary.cs">
+      <Link>Common\ObservableDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\Griddlers.Windows\Common\RelayCommand.cs">
+      <Link>Common\RelayCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Griddlers.Windows\Common\SuspensionManager.cs">
+      <Link>Common\SuspensionManager.cs</Link>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
