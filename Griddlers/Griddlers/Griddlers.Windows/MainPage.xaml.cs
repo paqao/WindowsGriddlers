@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using ApplicationViewModel;
 using Griddlers.Common;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -52,6 +53,9 @@ namespace Griddlers
 
 	    private void MainPage_Loaded(object sender, RoutedEventArgs e)
 		{
+			MainMenuViewModel viewModel = new MainMenuViewModel();
+			viewModel.BusyMode = false;
+			DataContext = viewModel;
 
 		}
 
@@ -86,5 +90,11 @@ namespace Griddlers
 			    fileStream.FlushAsync();
 		    }
 	    }
-    }
+
+		private void button_Click_1(object sender, RoutedEventArgs e)
+		{
+			var mainMenViewModel = DataContext as MainMenuViewModel;
+			mainMenViewModel.BusyMode = false;
+		}
+	}
 }

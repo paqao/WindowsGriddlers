@@ -87,8 +87,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryListViewModel.cs" />
+    <Compile Include="CategoryViewModel.cs" />
     <Compile Include="ClearRankingCommand.cs" />
     <Compile Include="ColumnHintViewModel.cs" />
+    <Compile Include="LevelViewModel.cs" />
+    <Compile Include="MainMenuViewModel.cs" />
     <Compile Include="PlayboardViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

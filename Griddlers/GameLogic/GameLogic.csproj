@@ -41,6 +41,8 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MapCategory.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="Playboard.cs" />
     <Compile Include="PlayboardTile.cs" />
     <Compile Include="Result.cs" />
